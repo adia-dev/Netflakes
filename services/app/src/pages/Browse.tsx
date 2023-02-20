@@ -68,8 +68,14 @@ const Browse = (props: Props) => {
                         </div>
                         {
                             [...Array(100)].map((_, i) => (
-                                <div key={i} className="h-full w-[250px] border-4 border-transparent brightness-90 hover:border-white cursor-pointer transition duration-300 delay-200 hover:brightness-100">
+                                <div key={i} className="group h-full w-[250px] border-4 relative border-transparent brightness-90 hover:border-white cursor-pointer transition duration-300 hover:brightness-100">
                                     <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
+                                    <div className="opacity-0 group-hover:opacity-100 transition-all duration-600 text-transparent group-hover:text-white ease-out absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center">
+                                        <p className='font-semibold text-white text-2xl'>Stranger Things</p>
+                                        <p className='font-light text-white text-sm'>2016</p>
+                                    </div>
+                                    {/* background gradient */}
+                                    <div className="opacity-100 group-hover:opacity-0  absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#0008] to-transparent"></div>
                                 </div>
                             ))
                         }
