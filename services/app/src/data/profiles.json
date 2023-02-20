@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Abdoulaye Dia",
+    "locked": true,
+    "pfp_uri": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+  },
+  {
+    "id": 2,
+    "name": "ARULBALAN Vithushan",
+    "locked": true,
+    "pfp_uri": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+  },
+  {
+    "id": 3,
+    "name": "CRETOIS Charles",
+    "locked": true,
+    "pfp_uri": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+  },
+  {
+    "id": 4,
+    "name": "LEBCIR Ilies",
+    "locked": false,
+    "pfp_uri": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+  }
+]
