@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Header from '../components/Header'
 
-type Props = {}
+type Props = {
+    scrollY?: number
+}
 interface Link {
     label: string,
-    uri: string
+    uri: string,
 }
 
 const Browse = (props: Props) => {
@@ -16,9 +19,19 @@ const Browse = (props: Props) => {
         }))
 
     return (
-        <div className='w-screen h-screen text-white overflow-x-hidden overflow-y-scroll'>
-            <img className='brightness-50 -z-10 w-screen h-screen object-cover fixed top-0 left-0' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-            <div className="pl-32 pt-24 z-10">
+        <div id="browse" className='text-white overflow-y-scroll z-0'>
+            <div className="brightness-75 z-[-1]  w-screen h-screen fixed top-0 left-0">
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+                <img className=' w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt=""
+                    style={{
+                        filter: props.scrollY ? 'brightness(0.25)' : 'brightness(1)',
+                        transform: props.scrollY ? 'scale(1.0)' : 'scale(1.1)',
+                        transition: props.scrollY ? 'all 0.5s ease-in-out' : 'all 0.5s ease-in-out',
+                    }}
+                />
+            </div>
+
+            <div className="pl-32 pt-24 z-50">
                 <div className="flex items-end space-x-2 text-3xl uppercase">
                     <h2 className='font-bold'>NETFLAKES</h2>
                     <p className='font-light'>Original</p>
@@ -37,8 +50,8 @@ const Browse = (props: Props) => {
                 </p>
                 <div className="flex items-center text-xs text-gray-300 pt-4 max-w-md flex-wrap">
                     {
-                        titleLinks.slice(0, titleLinks.length - 1).map((link) => (
-                            <Link to={link.uri} className='mr-1'>
+                        titleLinks.slice(0, titleLinks.length - 1).map((link, i) => (
+                            <Link key={i} to={link.uri} className='mr-1'>
                                 <span className='hover:text-white hover:underline transition duration-300 delay-200 whitespace-nowrap'>
                                     {link.label},
                                 </span>
@@ -56,91 +69,38 @@ const Browse = (props: Props) => {
                     }
                 </div>
             </div>
-            <div className="w-fit overflow-x-scroll relative -bottom-40 min-h-screen">
-                <div className="h-48 w-full flex flex-col my-3">
-                    <p className='font-semibold text-xl text-white px-10'>Popular on Netflakes</p>
-                    <div className="w-fit overflow-x-scroll flex-1 flex items-center space-x-2 -translate-x-[220px]">
-                        <div className="h-full w-[250px] border-4 border-transparent brightness-50">
-                            <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                        </div>
-                        <div className="h-full w-[250px] border-4 border-white">
-                            <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                        </div>
-                        {
-                            [...Array(100)].map((_, i) => (
-                                <div key={i} className="group h-full w-[250px] border-4 relative border-transparent brightness-90 hover:border-white cursor-pointer transition duration-300 hover:brightness-100">
-                                    <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                                    <div className="opacity-0 group-hover:opacity-100 transition-all duration-600 text-transparent group-hover:text-white ease-out absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center">
-                                        <p className='font-semibold text-white text-2xl'>Stranger Things</p>
-                                        <p className='font-light text-white text-sm'>2016</p>
+            <div className="w-screen relative -bottom-40 overflow-x-hidden">
+                {[...Array(5)].map((_, i) => (
+                    <div key={`row-${i}`} className="h-48 w-full flex flex-col my-3">
+                        <p className='font-semibold text-xl text-white px-10'>Popular on Netflakes</p>
+                        <div className="w-fit overflow-x-scroll flex-1 flex items-center space-x-2 -translate-x-[220px]">
+                            <div className="h-full w-[250px] border-4 border-transparent brightness-50">
+                                <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
+                            </div>
+                            <div className="h-full w-[250px] border-4 border-white">
+                                <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
+                            </div>
+                            {
+                                [...Array(10)].map((_, j) =>
+                                (
+                                    <div key={`row-${i}-video-${j}`} className="group h-full w-[250px] border-4 relative border-transparent brightness-90 hover:border-white cursor-pointer transition duration-300 hover:brightness-100">
+                                        <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
+                                        <div className="opacity-0 group-hover:opacity-100 transition-all duration-600 text-transparent group-hover:text-white ease-out absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center">
+                                            <p className='font-semibold text-white text-2xl'>Users</p>
+                                            <p className='font-light text-white text-sm'>2.1M Entities</p>
+                                        </div>
+                                        {/* background gradient */}
+                                        <div className="opacity-100 group-hover:opacity-0  absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#0008] to-transparent"></div>
                                     </div>
-                                    {/* background gradient */}
-                                    <div className="opacity-100 group-hover:opacity-0  absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#0008] to-transparent"></div>
-                                </div>
-                            ))
-                        }
+                                )
+                                )
+                            }
+                        </div>
                     </div>
-
-                </div>
-                <div className="h-48 w-full flex flex-col my-3">
-                    <p className='font-semibold text-xl text-white px-10'>Popular on Netflakes</p>
-                    <div className="w-fit overflow-x-scroll flex-1 flex items-center space-x-2 -translate-x-[220px]">
-                        <div className="h-full w-[250px] border-4 border-transparent brightness-50">
-                            <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                        </div>
-                        <div className="h-full w-[250px] border-4 border-white">
-                            <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                        </div>
-                        {
-                            [...Array(100)].map((_, i) => (
-                                <div key={i} className="h-full w-[250px] border-4 border-transparent brightness-90 hover:border-white cursor-pointer transition duration-300 delay-200 hover:brightness-100">
-                                    <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                                </div>
-                            ))
-                        }
-                    </div>
-
-                </div>
-                <div className="h-48 w-full flex flex-col my-3">
-                    <p className='font-semibold text-xl text-white px-10'>Popular on Netflakes</p>
-                    <div className="w-fit overflow-x-scroll flex-1 flex items-center space-x-2 -translate-x-[220px]">
-                        <div className="h-full w-[250px] border-4 border-transparent brightness-50">
-                            <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                        </div>
-                        <div className="h-full w-[250px] border-4 border-white">
-                            <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                        </div>
-                        {
-                            [...Array(100)].map((_, i) => (
-                                <div key={i} className="h-full w-[250px] border-4 border-transparent brightness-90 hover:border-white cursor-pointer transition duration-300 delay-200 hover:brightness-100">
-                                    <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                                </div>
-                            ))
-                        }
-                    </div>
-
-                </div>
-                <div className="h-48 w-full flex flex-col my-3">
-                    <p className='font-semibold text-xl text-white px-10'>Popular on Netflakes</p>
-                    <div className="w-fit overflow-x-scroll flex-1 flex items-center space-x-2 -translate-x-[220px]">
-                        <div className="h-full w-[250px] border-4 border-transparent brightness-50">
-                            <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                        </div>
-                        <div className="h-full w-[250px] border-4 border-white">
-                            <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                        </div>
-                        {
-                            [...Array(100)].map((_, i) => (
-                                <div key={i} className="h-full w-[250px] border-4 border-transparent brightness-90 hover:border-white cursor-pointer transition duration-300 delay-200 hover:brightness-100">
-                                    <img className='w-full h-full object-cover' src="https://bocir-prod-bucket.s3.amazonaws.com/radios/voltage/importrk/news/original/5bed99ffa08165.90306405.jpg" alt="" />
-                                </div>
-                            ))
-                        }
-                    </div>
-
-                </div>
-            </div>
-        </div>
+                ))
+                }
+            </div >
+        </div >
     )
 }
 
