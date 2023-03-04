@@ -1,0 +1,486 @@
+[
+  {
+    "name": "Users",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "name": "password",
+        "type": "string"
+      },
+      {
+        "name": "role",
+        "type": "string"
+      },
+      {
+        "name": "auto_renew",
+        "type": "boolean"
+      },
+      {
+        "name": "want_notification",
+        "type": "boolean"
+      }
+    ],
+    "comment": "Ceci est la table des utilisateurs, elle contient les informations de base de l'utilisateur. Elle est reliée à la table des préférences, des abonnements, des notifications, des listes de définitions et des listes d'autorisation."
+  },
+  {
+    "name": "SubscriptionTypes",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "price",
+        "type": "number"
+      },
+      {
+        "name": "device_count",
+        "type": "number"
+      },
+      {
+        "name": "subscription_end",
+        "type": "date"
+      }
+    ],
+    "comment": "Ceci est la table des types d'abonnement, elle contient les informations de base des différents types d'abonnement. Elle est reliée à la table des abonnements."
+  },
+  {
+    "name": "Preferences",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      }
+    ],
+    "comment": "Ceci est la table des préférences, elle contient les informations de base des préférences de l'utilisateur. Elle est reliée à la table des utilisateurs."
+  },
+  {
+    "name": "Tags",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "name",
+        "type": "string"
+      }
+    ],
+    "comment": "Ceci est la table des tags, elle contient les informations de base des tags. Elle est reliée à la table des vidéos, des personnages, des artistes et des commentaires."
+  },
+  {
+    "name": "Link_User_Video",
+    "isRelationTable": true,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "timestamp",
+        "type": "bigint"
+      },
+      {
+        "name": "last_time_watched",
+        "type": "date"
+      }
+    ],
+    "comment": "Ceci est la table de liaison entre les utilisateurs et les vidéos, elle contient les informations de base des liens entre les utilisateurs et les vidéos. Elle est reliée à la table des utilisateurs et des vidéos."
+  },
+  {
+    "name": "Characters",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "first_name",
+        "type": "string"
+      },
+      {
+        "name": "last_name",
+        "type": "string"
+      }
+    ],
+    "comment": "Ceci est la table des personnages, elle contient les informations de base des personnages. Elle est reliée à la table des vidéos, des tags et des commentaires."
+  },
+  {
+    "name": "Artists",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "first_name",
+        "type": "string"
+      },
+      {
+        "name": "last_name",
+        "type": "string"
+      }
+    ],
+    "comment": "Ceci est la table des artistes, elle contient les informations de base des artistes. Elle est reliée à la table des vidéos, des tags et des commentaires."
+  },
+  {
+    "name": "Tags_Link",
+    "isRelationTable": true,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      }
+    ],
+    "comment": "Ceci est la table de liaison entre les tags et les vidéos, elle contient les informations de base des liens entre les tags et les vidéos. Elle est reliée à la table des tags et des vidéos."
+  },
+  {
+    "name": "Comments",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "text",
+        "type": "string"
+      },
+      {
+        "name": "date",
+        "type": "date"
+      }
+    ],
+    "comment": "Ceci est la table des commentaires, elle contient les informations de base des commentaires. Elle est reliée à la table des utilisateurs, des vidéos, des personnages, des artistes et des tags."
+  },
+  {
+    "name": "Rating",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "value",
+        "type": "number"
+      }
+    ],
+    "comment": "Ceci est la table des notes, elle contient les informations de base des notes. Elle est reliée à la table des utilisateurs et des vidéos."
+  },
+  {
+    "name": "Authorise_List",
+    "isRelationTable": true,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      }
+    ],
+    "comment": "Ceci est la table de liaison entre les utilisateurs et les abonnements, elle contient les informations de base des liens entre les utilisateurs et les abonnements. Elle est reliée à la table des utilisateurs et des abonnements."
+  },
+  {
+    "name": "Notifications",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "text",
+        "type": "string"
+      },
+      {
+        "name": "date",
+        "type": "date"
+      }
+    ],
+    "comment": "Ceci est la table des notifications, elle contient les informations de base des notifications. Elle est reliée à la table des utilisateurs."
+  },
+  {
+    "name": "Qualities",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "width",
+        "type": "number"
+      },
+      {
+        "name": "height",
+        "type": "number"
+      },
+      {
+        "name": "is_hd",
+        "type": "boolean"
+      }
+    ],
+    "comment": "Ceci est la table des qualités, elle contient les informations de base des qualités. Elle est reliée à la table des vidéos."
+  },
+  {
+    "name": "Define_List",
+    "isRelationTable": true,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      }
+    ],
+    "comment": "Ceci est la table de liaison entre les utilisateurs et les définitions, elle contient les informations de base des liens entre les utilisateurs et les définitions. Elle est reliée à la table des utilisateurs et des définitions."
+  },
+  {
+    "name": "Warnings",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "type",
+        "type": "string"
+      }
+    ],
+    "comment": "Ceci est la table des avertissements, elle contient les informations de base des avertissements. Elle est reliée à la table des utilisateurs."
+  },
+  {
+    "name": "Warnings_Link",
+    "isRelationTable": true,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      }
+    ],
+    "comment": "Ceci est la table de liaison entre les avertissements et les vidéos, elle contient les informations de base des liens entre les avertissements et les vidéos. Elle est reliée à la table des avertissements et des vidéos."
+  },
+  {
+    "name": "Subtitles",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "path",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      }
+    ],
+    "comment": "Ceci est la table des traductions, elle contient les informations de base des traductions. Elle est reliée à la table des vidéos et des langues."
+  },
+  {
+    "name": "Languages",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "name",
+        "type": "string"
+      }
+    ],
+    "comment": "Ceci est la table des langues, elle contient les informations de base des langues. Elle est reliée à la table des traductions."
+  },
+  {
+    "name": "Video_Clip",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "path",
+        "type": "string"
+      },
+      {
+        "name": "is_trailer",
+        "type": "boolean"
+      }
+    ],
+    "comment": "Ceci est la table des extraits, elle contient les informations de base des extraits. Elle est reliée à la table des vidéos."
+  },
+  {
+    "name": "Images",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "path",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "is_thumbnail",
+        "type": "boolean"
+      }
+    ],
+    "comment": "Ceci est la table des images, elle contient les informations de base des images. Elle est reliée à la table des vidéos."
+  },
+  {
+    "name": "Seasons",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "official_release_date",
+        "type": "date"
+      },
+      {
+        "name": "production_date",
+        "type": "date"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      }
+    ],
+    "comment": "Ceci est la table des saisons, elle contient les informations de base des saisons. Elle est reliée à la table des séries."
+  },
+  {
+    "name": "Series",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "production_date",
+        "type": "date"
+      },
+      {
+        "name": "official_release_date",
+        "type": "date"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      }
+    ],
+    "comment": "Ceci est la table des séries, elle contient les informations de base des séries. Elle est reliée à la table des vidéos."
+  },
+  {
+    "name": "Categories_Link",
+    "isRelationTable": true,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      }
+    ],
+    "comment": "Ceci est la table de liaison entre les catégories et les vidéos, elle contient les informations de base des liens entre les catégories et les vidéos. Elle est reliée à la table des catégories et des vidéos."
+  },
+  {
+    "name": "Categories",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "name",
+        "type": "string"
+      }
+    ],
+    "comment": "Ceci est la table des catégories, elle contient les informations de base des catégories. Elle est reliée à la table des vidéos."
+  },
+  {
+    "name": "Videos",
+    "isRelationTable": false,
+    "fields": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "key": "primary"
+      },
+      {
+        "name": "path",
+        "type": "string"
+      },
+      {
+        "name": "view_count",
+        "type": "number"
+      },
+      {
+        "name": "release_date",
+        "type": "date"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      }
+    ],
+    "comment": "Ceci est la table des vidéos, elle contient les informations de base des vidéos. Elle est reliée à la table des utilisateurs."
+  }
+]

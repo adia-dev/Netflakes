@@ -21,9 +21,7 @@ const Header = (props: Props) => {
                 <div className="flex text-xs text-gray-300 items-center mx-10">
                     <Link to="/browse" className="hover:text-white cursor-pointer transition duration-300 delay-200">Home</Link>
                     <Link to="/tables" className="hover:text-white cursor-pointer transition duration-300 delay-200 ml-4">Tables</Link>
-                    <div className="hover:text-white cursor-pointer transition duration-300 delay-200 ml-4">Records</div>
-                    <div className="hover:text-white cursor-pointer transition duration-300 delay-200 ml-4">Recently Added</div>
-                    <div className="hover:text-white cursor-pointer transition duration-300 delay-200 ml-4">My List</div>
+                    <Link to="/tables" className="hover:text-white cursor-pointer transition duration-300 delay-200 ml-4">Credits</Link>
                 </div>
 
                 {/* Search bar */}
